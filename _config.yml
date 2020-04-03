@@ -1,6 +1,6 @@
 permalink: /posts/:title
 markdown: kramdown
-remote_theme: Huxpro/huxpro.github.io
+theme: jekyll-theme-architect
 
 gems:
   - jekyll-sitemap
