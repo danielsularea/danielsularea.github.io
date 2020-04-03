@@ -1,5 +1,6 @@
 permalink: /posts/:title
 markdown: kramdown
+remote_theme: danielsularea/jekyll-klise
 
 gems:
   - jekyll-sitemap
