@@ -1,6 +1,6 @@
 permalink: /posts/:title
 markdown: kramdown
-theme: jekyll-theme-architect
+theme: louie
 
 gems:
   - jekyll-sitemap
