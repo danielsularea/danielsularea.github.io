@@ -1,7 +1,7 @@
 # Site settings
 title: Daniel S.
 description: >-
-  Software developer currently living in Munich, Germany. I work as a backend developer in the Java ecosystem but I'm always open to new technologies (previously I did Android development and before that frontend).
+  Software developer currently living in Munich, Germany.
 lang: en-US
 timezone: Europe/Berlin
 image: assets/img/ogp.png # This image used for Open Graph more info https://ogp.me/
@@ -12,7 +12,7 @@ mode: dark # default theme "dark" | "light"
 author:
   name: Daniel S.
   bio: >-
-    Software developer currently living in Munich, Germany. I work as a backend developer in the Java ecosystem but I'm always open to new technologies (previously I did Android development and before that frontend).
+    Software developer currently living in Munich, Germany. 
   username: danielsularea
   email: daniel@daniel.eu.com
   avatar: /assets/img/
