@@ -1,33 +1,73 @@
 ---
-layout: layout
+layout: compress
 ---
 
-<section class="content">
-  <h1>
-    <a href="{{ page.url }}">{{ page.title }}</a>
-  </h1>
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: "en" }}">
 
-  <section class="byline">
-    {{ page.date | date: "%B %e, %Y" }}
-  </section>
+{% include header.html %}
 
-  {{ content }}
+<body>
+  {% include navbar.html %}
+  <div class="wrapper post">
+    <main class="page-content" aria-label="Content">
+      <article itemscope itemtype="https://schema.org/BlogPosting">
 
-  <!-- TODO: bio here -->
-  <section class="meta">
-    <h3>Discussion, links, and tweets</h3>
-    <section class="copy">
-      <a href="https://twitter.com/{{ site.twitter }}" target="_blank">
-        <img src="{{ site.github.owner_gravatar_url }}?s=142" height="50" width="50" />
-      </a>
+        <header class="header">
+          {% if page.tags and page.tags != empty %}
+          <div class="tags">
+            {% assign tags = page.tags %}
+            <span itemprop="keywords">
+              {% for tag in tags %}
+              <a class="tag"
+                href="/tags/#{{tag | downcase | slugify}}">{{tag | upcase }}</a>{% unless forloop.last %},{% endunless %}
+              {% endfor %}
+            </span>
+          </div>
+          {% endif %}
+          <h1 class="header-title" itemprop="headline">{{ page.title | escape }}</h1>
+          {% if page.date %}
+          <div class="post-meta">
+            <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
+              {{ page.date | date: "%b %d, %Y" }}
+            </time>
+            <span itemprop="author" itemscope itemtype="https://schema.org/Person">
+              <span itemprop="name">{{ site.author.name }}</span>
+            </span>
+            <time hidden datetime="{{ page.modified | date_to_xmlschema }}" itemprop="dateModified">
+              {{ page.date | date: "%b %d, %Y" }}
+            </time>
+            <span hidden itemprop="publisher" itemtype="Person">{{ site.author.name }}</span>
+            <span hidden itemprop="image">{{ page.image }}</span>
+            <span hidden itemprop="mainEntityOfPage">{{ page.excerpt }}</span>
+          </div>
+          {% endif %}
+        </header>
 
-      <p>
-        <a href="https://twitter.com/{{ site.twitter }}" target="_blank">Follow me on Twitter</a>
-      </p>
+        <div class="page-content" itemprop="articleBody">
+          {% include anchor_headings.html html=content anchorClass="anchor-head" beforeHeading=true h_min=1 h_max=4 %}
+          {% if page.tweet %}
+          <p>Comments this article on 
+            <a href="https://twitter.com/{{site.username}}/status/{{page.tweet}}">Twitter</a>.
+          </p>
+          {% endif %}
+        </div>
+      </article>
+      {% if page.comments %}
+        {% include comments.html%}
+      {% endif %}
 
-      <a href="http://twitter.com/share" class="twitter-share-button" data-count="none" data-via="{{ site.twitter }}">Tweet</a>
-      <a href="http://twitter.com/{{ site.twitter }}" class="twitter-follow-button" data-show-count="false">Follow @{{ site.twitter }}</a>
-      <script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>
-    </section>
-  </section>
-</section>
+    </main>
+    {% if page.modified %}
+      <small class="post-updated-at">updated_at {{page.modified | date: "%d-%m-%Y"}}</small>
+    {% endif %}
+    {% if page.next or page.previous %}
+      {% include navigation.html %}
+    {% endif %}
+  </div>
+
+  {% include footer.html %}
+
+</body>
+
+</html>

@@ -14,7 +14,7 @@ Layer 2, the **network layer** is responsible for the forwarding of packets hop 
 Layer 1, **link layer** defines how the individual bits are sent through the network and it's highly dependant on the underlying technology. 
 
 {:.center}
-![encapsulation network](/images/2015/encapsulation.png)
+![encapsulation network](/assets/img/2015/encapsulation.png)
 
 An important characteristic of network protocols is **encapsulation**. The bytes from the application layer get passed to the transport layer. Layer 3 then adds a special header (more on this later) to the data and calls it a *segment*. It then passes the segment to the network layer, which again, adds a special header to the entire payload and calls it a *datagram*. The final layer, link layer, adds a header and a footer to the payload it receives from the network layer and calls it an *ethernet frame*. 
 
@@ -22,7 +22,7 @@ An important characteristic of network protocols is **encapsulation**. The bytes
 ## TCP (transmission control protocol)
 
 {:.center}
-![TCP header](/images/2015/tcp_header.png)
+![TCP header](/assets/img/2015/tcp_header.png)
 
 TCP is a **reliable** transfer protocol, meaning that it has mechanisms for checking that the bytes *arrive* at the destination, that they are delivered *in order* and that missing bytes are *re-transmitted* (a TCP payload is called a segment and each segment has a maximum length of 64KB including the header).
 
@@ -47,10 +47,10 @@ Starting with **Options #1** are the optional information. You can read more abo
 A real TCP segment looks like this (this is a screenshot from wireshark and below it you’ll find the actual binary representation of the fields you see in the image). This is the first segment sent from my computer to a server on the web to establish the 3-way-handshake. More on this below.
 
 {:.center}
-![TCP wireshark](/images/2015/wireshark_tcp.png)
+![TCP wireshark](/assets/img/2015/wireshark_tcp.png)
 
 {:.center}
-![TCP wireshark](/images/2015/wireshark_tcp_2.png)
+![TCP wireshark](/assets/img/2015/wireshark_tcp_2.png)
 
         
 In this case **(options)** and **(padding)** are 0 and they wouldn't exit (no sense in having an extra 32 bits with zeros) but they are included just to show where they would follow. Below it we find the **(data)**. What you can't see in the wireshark screen is the window size which is 8192 (in decimal) which corresponds to the binary number in the table.
@@ -112,15 +112,15 @@ If the client received correctly the packets from 12 to 15 but not 11 then it wi
 As it has been said, TCP is a connection-oriented protocol which means it establishes a state prior. It does this with a 3-way handshake. An image showing this follows. 
 
 {:.center}
-![3 way handshake](/images/2015/3_way_handshake.png)
+![3 way handshake](/assets/img/2015/3_way_handshake.png)
 
 The client first sends an emtpy (no data) TCP segment to the server with the SYN flag set. The sequence number in this case will not be 0 (even though you can see below that wireshark shows it as Seq = 0). It will be a random 9-10 string digit.  You can actually disable relative sequence numbers from the Edit - Preferences - Protocols - TCP - and uncheck "Relative Sequence Number". A picture with the "correct" Seq/Ack number will be shown below too. These are the three TCP segments required for the 3-way handshake.
 
 {:.center}
-![3 way handshake wireshark relative sequence number](/images/2015/3_way_handshake_relative_seqno.png)
+![3 way handshake wireshark relative sequence number](/assets/img/2015/3_way_handshake_relative_seqno.png)
 
 {:.center}
-![3 way handshake wireshark correct sequence number](/images/2015/3_way_handshake_correct_seqno.png)
+![3 way handshake wireshark correct sequence number](/assets/img/2015/3_way_handshake_correct_seqno.png)
 
 There are good reasons for choosing a random SeqNum: security reasons, so that people can't guess the sequence number and try to insert data; it's also useful against random (corrupt) packets which can overlap with our sequence number. 
 
@@ -131,14 +131,14 @@ Finally, the client responds back sending a TCP segment with its ACK flag set. T
 ### Connection teardown
 
 {:.center}
-![3 way handshake teardown](/images/2015/4_way_handshake.png)
+![3 way handshake teardown](/assets/img/2015/4_way_handshake.png)
 
 When the client has done sending data to the host, it sends an empty TCP segment with the flag **FIN** set. The server then sends the remaining data and also sets the **ACK** flag, acknowledging the fin segment from the client. When the server is ready to close the connection, it sends a segment with the flag **FIN** set. At this point the client sends the final segment acknowledging the server's fin. 
 
 ## UDP (user datagram protocol)
 
 {:.center}
-![UDP segment](/images/2015/udp.png)
+![UDP segment](/assets/img/2015/udp.png)
 
 
 There are also *unreliable* protocols. **UDP** is also a transmission protocol which doesn't require the reliability and overhead of TCP. DNS services use UDP for example. A UDP segment is much simpler, as you can see in the image.
@@ -148,7 +148,7 @@ There are also *unreliable* protocols. **UDP** is also a transmission protocol 
 ## Internet protocol (IP)
 
 {:.center}
-![IP datagram](/images/2015/ip_datagram.png) 
+![IP datagram](/assets/img/2015/ip_datagram.png) 
 
 The network layer uses the **internet protocol (IP)**. It's an **unreliable** protocol, which means packets might be dropped in certain circumstances. It's **connectionless**, meaning that it does't maintain any per-flow state. An example when a packet might be dropped is when the router buffer is full or when the TTL field of a datagram is 0.
 The network layer has two important tasks: **forwarding** and **routing**. Forwarding is the process of moving the datagram from the input link to the output link of a router. Routing is a network-wide process of choosing the path a packet should take. The paths are calculated with the help of *routing algorithms*.
@@ -176,7 +176,7 @@ A high level view of the IP datagram looks like the image above.
 The other fields are self-explanatory (see above from TCP). The actual binary representation alongside with a wireshark screen follows.
 
 {:.center}
-![IP datagram wireshark](/images/2015/ip_wireshark.png)
+![IP datagram wireshark](/assets/img/2015/ip_wireshark.png)
 
 In the screenshot above you can see that it has the **DF** bit set because generally IP fragmentation is avoided. 
 The IP version is 4 (IPv4), the TTL field is 128 and the protocol is 6 which represents TCP (see [here](http://technet.microsoft.com/en-us/library/cc959827.aspx) a list of protocol numbers). The header length is represented in words, so it’s 5.
