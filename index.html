@@ -1,16 +1,109 @@
----
-layout: layout
-title: "Posts"
----
+<!DOCTYPE html>
+<html lang="en-US">
 
-<section class="content">
-  <ul class="listing">
-    {% for post in site.posts %}
-      {% unless post.draft %}
-      <li>
-        <span>{{ post.date | date: "%B %e, %Y" }}</span> <a href="{{ post.url }}">{{ post.title }}</a>
-      </li>
-      {% endunless %}
-    {% endfor %}
-  </ul>
-</section>
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	
+	<title>Daniel S.</title>
+	<meta name="description" content="Romanian-born software engineer based in Munich, Germany." />
+	<meta name="robots" content="index, follow" />
+	<meta name="referrer" content="always" />
+
+	<meta property="og:title" content="Daniel S" />
+	<meta property="og:description" content="Romanian-born software engineer based in Munich, Germany." />
+	<meta property="og:image" content="https://daniel.eu.com/images/background.jpeg">
+	<meta property="og:url" content="https://daniel.eu.com" />
+	<meta name="twitter:title" content="Daniel S." >
+	<meta name="twitter:description" content="Romanian-born software engineer based in Munich, Germany." />
+	<meta name="twitter:image" content="https://daniel.eu.com/images/background.jpeg" />
+	<meta name="twitter:site" content="@moodpepper" />
+	<meta name="twitter:creator" content="@moodpepper" />
+
+	<link rel="icon" type="image/png" href="images/favicon.png" sizes="32x32">
+
+	<link rel='stylesheet' href='assets/css/styles.css' type='text/css' media='screen' />
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+
+</head>
+
+<body id="fullsingle" class="page-template-page-fullsingle-split">
+
+<div class="fs-split">
+
+	<!-- Content Side -->
+	<div class="split-content">
+
+		<div class="split-content-vertically-center">
+		
+			<div class="split-intro">
+				
+				<h1>Hi, my name is</h1>
+
+				<span class="tagline">Daniel.</span>
+
+			</div>
+
+			<div class="split-bio">
+				<p>I'm a software engineer based in Munich, Germany 🇩🇪 <br>
+					working for an online retailer company.
+				</p>
+				<p>I'm passionate about applying good <br/> 
+					software practices and designing a clean architecture.
+				</p>
+				<br/>
+				<p>A more important question than <em>how</em> is <em>why</em>.</p>
+			</div>
+
+			<div class="split-lists">
+				
+				<div class="split-list">
+
+					<h3>Connect</h3>
+
+					<ul>
+						<li><a href="https://daniel.eu.com/blog">Blog</a></li>
+						<li><a href="mailto:me@daniel.eu.com">Email</a></li>
+						<li><a href="https://github.com/danielsularea">Github</a></li>
+					</ul>
+
+				</div>
+
+				<div class="split-list">
+
+					<h3>Social</h3>
+
+					<ul>
+						<li><a href="https://linkedin.com/in/danielsularea">LinkedIn</a></li>
+						<li><a href="https://www.instagram.com/dsularea">Instagram</a></li>
+						<li><a href="https://twitter.com/moodpepper">Twitter</a></li>
+					</ul>
+
+				</div>
+
+				<div class="split-list">
+
+					
+
+				</div>
+				
+			</div>
+
+			<div class="split-credit">
+
+				<p>&copy;2020 <a href="#">Daniel S.</a></p>
+
+			</div>		
+
+		</div>
+
+	</div>
+	<!-- Image Side -->
+	<div class="split-image">
+
+	</div>
+
+</div>
+
+</body>
+</html>
